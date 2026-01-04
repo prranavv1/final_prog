@@ -1,0 +1,97 @@
+.navbar {
+  height: 90px;
+  background-color: #d0d0d0;
+
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+
+  font-family: Arial, sans-serif;
+
+  /* 🔥 THIS MAKES IT STICK TO TOP */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* LEFT LOGO */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logo {
+  height: 80px;   /* increase logo size */
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1a2a6c;
+}
+
+/* MENU */
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin-left: 40px;
+}
+
+.navbar-menu li {
+  position: relative;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* DROPDOWN */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 25px;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  min-width: 180px;
+  padding: 5px 0;
+  z-index: 100;
+}
+
+.dropdown-menu li {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* RIGHT USER */
+.navbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+}

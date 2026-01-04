@@ -1,0 +1,61 @@
+.jdr-container {
+  padding-top: 110px; /* space for navbar */
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.jdr-title {
+  margin-bottom: 20px;
+  color: #1a2a6c;
+}
+
+/* FILTERS */
+.jdr-filters {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.jdr-filters div {
+  display: flex;
+  flex-direction: column;
+}
+
+.jdr-filters label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.jdr-filters input,
+.jdr-filters select {
+  padding: 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+}
+
+/* TABLE */
+.jdr-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jdr-table th {
+  background-color: #155d7a;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.jdr-table td {
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+  font-size: 13px;
+}
+
+.jdr-table tbody tr:nth-child(even) {
+  background-color: #f2f5f7;
+}
+
+.jdr-table tbody tr:nth-child(odd) {
+  background-color: #e6eaee;
+}

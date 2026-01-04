@@ -1,0 +1,92 @@
+.newjob-container {
+  padding-top: 110px;   /* space for fixed navbar */
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.newjob-title {
+  margin-bottom: 20px;
+  color: #1a2a6c;
+}
+
+/* GRID EXACTLY BELOW TITLE */
+.newjob-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 25px;
+}
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 100%;
+  z-index: 1000;
+}
+
+.dropdown-box {
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.required {
+  color: red;
+}
+
+
+
+
+
+/* FIELD */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+}
+
+/* FULL WIDTH TEXTAREA */
+.field.full {
+  grid-column: span 4;
+}
+
+/* BUTTONS */
+.newjob-actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cancel {
+  padding: 8px 20px;
+  border: 1px solid #1a2a6c;
+  background: white;
+  color: #1a2a6c;
+}
+
+.save {
+  padding: 8px 30px;
+  background: #0b5ed7;
+  color: white;
+  border: none;
+}
+.save:hover {
+  background: #084298;
+}

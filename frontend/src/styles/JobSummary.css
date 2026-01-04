@@ -1,0 +1,38 @@
+.js-container {
+  padding-top: 110px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.js-title {
+  margin-bottom: 20px;
+  color: #1a2a6c;
+}
+
+.js-top {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.js-top label {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.js-top select {
+  padding: 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+}
+
+.js-count {
+  font-size: 16px;
+  color: #333;
+}
+
+.js-chart {
+  margin-top: 20px;
+}

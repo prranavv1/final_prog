@@ -1,0 +1,84 @@
+.jobexp-container {
+  padding-top: 110px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.jobexp-title {
+  margin-bottom: 20px;
+  color: #1a2a6c;
+}
+
+/* TOP FORM */
+.jobexp-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 25px;
+  margin-bottom: 30px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.field input,
+.field select {
+  padding: 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+}
+
+/* EXPENSE TABLE */
+.expense-box {
+  border: 1px solid #6b9fbf;
+  border-radius: 6px;
+}
+
+.expense-header,
+.expense-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 10px;
+  align-items: center;
+}
+
+.expense-header {
+  background-color: #eef6fb;
+  font-weight: 600;
+}
+
+.expense-row {
+  border-top: 1px solid #d0e4f2;
+}
+
+.expense-row.data {
+  background-color: #fff;
+}
+
+/* ACTIONS */
+.jobexp-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cancel {
+  padding: 8px 20px;
+  border: 1px solid #1a2a6c;
+  background: white;
+  color: #1a2a6c;
+}
+
+.save {
+  padding: 8px 30px;
+  background: #0b5ed7;
+  color: white;
+  border: none;
+}

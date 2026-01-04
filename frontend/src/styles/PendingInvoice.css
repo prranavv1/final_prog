@@ -1,0 +1,39 @@
+.pi-container {
+  padding-top: 110px; /* space for fixed navbar */
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.pi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #1a2a6c;
+}
+
+.pi-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pi-table th {
+  background-color: #155d7a;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.pi-table td {
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+  font-size: 13px;
+}
+
+.pi-table tbody tr:nth-child(even) {
+  background-color: #f2f5f7;
+}
+
+.pi-table tbody tr:nth-child(odd) {
+  background-color: #e6eaee;
+}

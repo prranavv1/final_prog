@@ -1,0 +1,54 @@
+.jobfin-container {
+  padding-top: 110px; /* space for fixed navbar */
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.jobfin-title {
+  margin-bottom: 20px;
+  color: #1a2a6c;
+}
+
+.jobfin-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 25px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.field input,
+.field select {
+  padding: 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+}
+
+.jobfin-actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cancel {
+  padding: 8px 20px;
+  border: 1px solid #1a2a6c;
+  background: white;
+  color: #1a2a6c;
+}
+
+.save {
+  padding: 8px 30px;
+  background: #0b5ed7;
+  color: white;
+  border: none;
+}
