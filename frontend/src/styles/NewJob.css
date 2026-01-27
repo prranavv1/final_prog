@@ -1,92 +1,143 @@
-.newjob-container {
-  padding-top: 110px;   /* space for fixed navbar */
-  padding-left: 40px;
-  padding-right: 40px;
+.newjob-wrapper {
+  padding: 30px 40px;
+  background: #c9def1;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
 }
 
-.newjob-title {
+.page-header h1 {
+  margin: 0;
+  color: #001f3f;
+}
+
+.page-header p {
+  color: #3b5a82;
   margin-bottom: 20px;
-  color: #1a2a6c;
 }
 
-/* GRID EXACTLY BELOW TITLE */
-.newjob-form {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px 25px;
-}
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
+.form-card {
   background: white;
-  border: 1px solid #ccc;
-  padding: 8px;
-  width: 100%;
-  z-index: 1000;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 25px;
 }
 
-.dropdown-box {
-  border: 1px solid #ccc;
-  padding: 8px;
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5ecf6;
+  padding-bottom: 15px;
+}
+
+.form-header h2 {
+  margin: 0;
+  color: #001f3f;
+}
+
+.form-header p {
+  font-size: 13px;
+  color: #6b7c99;
+}
+
+.form-actions-top button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
 }
 
-.required {
-  color: red;
+.cancel-btn {
+  background: white;
+  border: 1px solid #ccc;
 }
 
+.save-btn {
+  background: #001f3f;
+  color: white;
+  margin-left: 10px;
+}
 
+.job-no-box {
+  background: #e6f7e6;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid green;
+  font-weight: bold;
+}
 
+.newjob-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
 
-
-/* FIELD */
 .field {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .field label {
-  font-size: 13px;
+  font-size: 12px;
   margin-bottom: 4px;
+  font-weight: bold;
+  color: #3b4b66;
 }
 
 .field input,
 .field select,
 .field textarea {
-  padding: 8px;
-  border: 1px solid #cfcfcf;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccd5e3;
 }
 
-/* FULL WIDTH TEXTAREA */
 .field.full {
   grid-column: span 4;
 }
 
-/* BUTTONS */
-.newjob-actions {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.cancel {
-  padding: 8px 20px;
-  border: 1px solid #1a2a6c;
+.dropdown {
+  position: absolute;
+  top: 100%;
   background: white;
-  color: #1a2a6c;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 9999;
 }
 
-.save {
-  padding: 8px 30px;
-  background: #0b5ed7;
-  color: white;
-  border: none;
+.dropdown div {
+  padding: 8px;
+  cursor: pointer;
 }
-.save:hover {
-  background: #084298;
+
+.dropdown div:hover {
+  background: #eef4ff;
+}
+/* Multi-select dropdown styling */
+.field select[multiple] {
+  height: 110px;
+  background: #f9fbff;
+  cursor: pointer;
+}
+.selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.selected-list span {
+  background: #001f3f;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.field textarea {
+  height: 42px;          /* same height as input/select */
+  resize: none;         /* stop manual resizing */
 }

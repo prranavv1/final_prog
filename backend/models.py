@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, BigInteger, ForeignKey
+from sqlalchemy import Column, String, Integer, BigInteger
 from database import Base
 
 
@@ -8,6 +8,9 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String(100), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
+    role = Column(String(50), nullable=False)   # 🔥 MUST be here
+   
+
 class Customer(Base):
     __tablename__ = "customers"
 

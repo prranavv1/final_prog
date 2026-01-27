@@ -24,50 +24,66 @@ const data = [
 
 function PaymentSummary() {
   return (
-    <div className="ps-container">
-      <h2 className="ps-title">Payment Summary Report</h2>
+  <div className="ps-page">
 
-      {/* TOP FILTER + METRICS */}
-      <div className="ps-top">
-        <div>
-          <label>Start Year</label>
-          <select>
-            <option>Select option</option>
-            <option>2025</option>
-            <option>2024</option>
-          </select>
-        </div>
-
-        <div className="ps-metric">
-          Payment received: <b>9,02,12,863</b>
-        </div>
-        <div className="ps-metric">
-          Payment Invoiced: <b>1,65,73,890</b>
-        </div>
-        <div className="ps-metric">
-          Invoice Pending: <b>1,33,70,190</b>
-        </div>
-        <div className="ps-metric highlight">
-          Revenue YTD: <b>12,01,56,943</b>
-        </div>
+    {/* Grey Header */}
+    <div className="ps-header">
+      <div>
+        <h2>PAYMENT SUMMARY REPORT</h2>
+        <p>Manage and track your engineering workflows.</p>
       </div>
 
-      {/* CHART */}
-      <div className="ps-chart">
-        <ResponsiveContainer width="100%" height={360}>
-          <BarChart data={data}>
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="received" fill="#4cd964" name="Invoice Payment received" />
-            <Bar dataKey="progress" fill="#4aa3df" name="Invoice Payment in progress" />
-            <Bar dataKey="pending" fill="#f5b041" name="Yet to Invoice" />
-          </BarChart>
-        </ResponsiveContainer>
+      <div className="ps-year">
+        <label>FISCAL YEAR</label>
+        <select>
+          <option>2025</option>
+          <option>2024</option>
+        </select>
       </div>
     </div>
-  );
+
+    {/* Stat Cards */}
+    <div className="ps-cards">
+      <div className="ps-card">
+        <span>PAYMENT RECEIVED</span>
+        <h3>₹ 8,45,20,000</h3>
+      </div>
+
+      <div className="ps-card">
+        <span>PAYMENT INVOICED</span>
+        <h3>₹ 2,10,30,000</h3>
+      </div>
+
+      <div className="ps-card danger">
+        <span>INVOICE PENDING</span>
+        <h3>₹ 1,46,06,943</h3>
+      </div>
+
+      <div className="ps-card dark">
+        <span>REVENUE YTD</span>
+        <h3>₹ 12,01,56,943</h3>
+      </div>
+    </div>
+
+    {/* Chart Card */}
+    <div className="ps-chart-card">
+      <h3>FINANCIAL COLLECTIONS OVERVIEW</h3>
+
+      <ResponsiveContainer width="100%" height={360}>
+        <BarChart data={data}>
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="received" fill="#19b87e" name="Payment Received" />
+          <Bar dataKey="progress" fill="#3b82f6" name="In Progress" />
+          <Bar dataKey="pending" fill="#f59e0b" name="Invoice Pending" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+
+  </div>
+);
 }
 
 export default PaymentSummary;

@@ -1,39 +1,105 @@
-.ar-container {
-  padding-top: 110px; /* space for navbar */
-  padding-left: 40px;
-  padding-right: 40px;
+/* Full page background */
+.ar-page {
+  background: #c6d9ed;
+  min-height: 100vh;
+  padding: 40px;
 }
 
-.ar-header {
+/* Top title */
+.ar-page-header h1 {
+  font-size: 28px;
+  color: #0b2545;
+}
+.ar-page-header p {
+  color: #4d6b8a;
+  margin-bottom: 25px;
+}
+
+/* White main card */
+.ar-card {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Card header */
+.ar-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  color: #1a2a6c;
 }
 
-.ar-table {
-  width: 100%;
-  border-collapse: collapse;
+.ar-card-header h2 {
+  margin: 0;
+  color: #001f3f;
 }
 
-.ar-table th {
-  background-color: #155d7a;
-  color: white;
-  padding: 10px;
-  font-size: 14px;
-}
-
-.ar-table td {
-  padding: 10px;
-  border: 1px solid #d0d0d0;
+.ar-card-header p {
   font-size: 13px;
+  color: #6b7c99;
 }
 
-.ar-table tbody tr:nth-child(even) {
-  background-color: #f2f5f7;
+/* Total Outstanding Box */
+.ar-total-box {
+  text-align: right;
+}
+.ar-total-box span {
+  font-size: 12px;
+  color: #8aa0b6;
+}
+.ar-total-box h3 {
+  color: #13a663;
+  font-size: 26px;
+  margin: 0;
 }
 
-.ar-table tbody tr:nth-child(odd) {
-  background-color: #e6eaee;
+/* Table Header */
+.ar-table-header {
+  background: #155d7a;
+  color: white;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Table Rows */
+.ar-row {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  padding: 12px;
+  border-bottom: 1px solid #e6eef6;
+  background: white;
+  align-items: center;
+}
+
+.job-link {
+  color: #0b5cff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.client {
+  font-weight: 600;
+}
+
+.age {
+  color: orange;
+  font-weight: bold;
+}
+.age.danger {
+  color: #ff6b00;
+}
+
+.remarks {
+  font-style: italic;
+  color: #7a8ca8;
+}
+
+.edit-icon {
+  margin-left: 6px;
+  cursor: pointer;
 }

@@ -1,12 +1,13 @@
-from sqlalchemy import Column, Integer, String, Date, JSON
+from sqlalchemy import Column, Integer, String, Date, JSON, BigInteger
 from database import Base
 
 class Job(Base):
     __tablename__ = "jobs"
 
-    job_id = Column(Integer, primary_key=True)
-    job_no = Column(Integer)
-    customer_id = Column(Integer)
+    job_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    job_no = Column(Integer, unique=True)
+
+    customer_id = Column(BigInteger)
 
     product_service = Column(String(100))
 
@@ -14,18 +15,23 @@ class Job(Base):
     job_state = Column(String(100))
     job_country = Column(String(100))
 
-    lead_engineer = Column(String(100))
-    supporting_engineers = Column(JSON)
-    assets_carried = Column(JSON)
-    planned_tests = Column(JSON)
-
     transport_mode_id = Column(Integer)
     vehicle_detail_id = Column(Integer)
     driver_accompanied_id = Column(Integer)
     power_plant_type_id = Column(Integer)
 
+    lead_engineer = Column(String(100))
+    supporting_engineers = Column(JSON)
+    assets_carried = Column(JSON)
+    planned_tests = Column(JSON)
+
     job_activity = Column(String(500))
+
     job_work_status_id = Column(Integer)
     job_report_status_id = Column(Integer)
 
+    report_prepared_by = Column(String(100))
+    report_reviewed_by = Column(String(100))
+
     job_start_date = Column(Date)
+    job_end_date = Column(Date)

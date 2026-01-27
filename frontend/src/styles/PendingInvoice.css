@@ -1,39 +1,111 @@
-.pi-container {
-  padding-top: 110px; /* space for fixed navbar */
-  padding-left: 40px;
-  padding-right: 40px;
+/* Page background */
+.pi-page {
+  background: #c6d9ed;
+  min-height: 100vh;
+  padding: 40px;
 }
 
-.pi-header {
+/* Page Title */
+.pi-page-header h1 {
+  font-size: 28px;
+  color: #0b2545;
+}
+.pi-page-header p {
+  color: #4d6b8a;
+  margin-bottom: 25px;
+}
+
+/* White Card */
+.pi-card {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Card Header */
+.pi-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  color: #1a2a6c;
 }
 
-.pi-table {
-  width: 100%;
-  border-collapse: collapse;
+.pi-card-header h2 {
+  margin: 0;
+  color: #001f3f;
 }
 
-.pi-table th {
-  background-color: #155d7a;
-  color: white;
-  padding: 10px;
-  font-size: 14px;
-}
-
-.pi-table td {
-  padding: 10px;
-  border: 1px solid #d0d0d0;
+.pi-card-header p {
   font-size: 13px;
+  color: #6b7c99;
 }
 
-.pi-table tbody tr:nth-child(even) {
-  background-color: #f2f5f7;
+/* Total Box */
+.pi-total-box {
+  text-align: right;
+}
+.pi-total-box span {
+  font-size: 12px;
+  color: #8aa0b6;
+}
+.pi-total-box h3 {
+  color: #13a663;
+  font-size: 26px;
+  margin: 0;
 }
 
-.pi-table tbody tr:nth-child(odd) {
-  background-color: #e6eaee;
+/* Table Header */
+.pi-table-header {
+  background: #155d7a;
+  color: white;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1.5fr 1.5fr 1.7fr 1.5fr 2fr 0.7fr;
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Rows */
+.pi-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1.5fr 1.5fr 1.7fr 1.5fr 2fr 0.7fr;
+  padding: 12px;
+  border-bottom: 1px solid #e6eef6;
+  background: white;
+  align-items: center;
+}
+
+/* Alternate row color */
+.pi-row:nth-child(even) {
+  background: #f3f6f9;
+}
+
+
+.job-link {
+  color: #0b5cff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.client {
+  font-weight: 600;
+}
+
+.age {
+  color: red;
+  font-weight: bold;
+}
+.age.danger {
+  color: #ff0000;
+}
+
+.remarks {
+  font-style: italic;
+  color: #7a8ca8;
+}
+
+.edit-icon {
+  margin-left: 6px;
+  cursor: pointer;
 }

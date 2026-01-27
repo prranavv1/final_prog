@@ -44,3 +44,98 @@
 .ps-chart {
   margin-top: 20px;
 }
+.ps-page {
+  background: #c6d9ed;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+/* Header */
+.ps-header {
+  background: #c7dbef;
+  padding: 25px 40px;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+}
+
+.ps-header h2 {
+  margin: 0;
+  color: #001f3f;
+}
+
+.ps-header p {
+  color: #445b73;
+}
+
+/* Year selector */
+.ps-year {
+  position: absolute;
+  right: 40px;
+  top: 30px;
+}
+
+.ps-year label {
+  font-size: 12px;
+  color: #3b4b66;
+  display: block;
+}
+
+.ps-year select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d6e0ef;
+}
+
+/* Cards row */
+.ps-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin: 30px 0;
+}
+
+/* Normal cards */
+.ps-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.ps-card span {
+  font-size: 12px;
+  color: #7a8ca8;
+}
+
+.ps-card h3 {
+  margin: 8px 0 0;
+  font-size: 24px;
+}
+
+/* Pending card (red) */
+.ps-card.danger h3 {
+  color: #ff2f2f;
+}
+
+/* Revenue card (dark) */
+.ps-card.dark {
+  background: #031b34;
+  color: white;
+}
+
+.ps-card.dark span {
+  color: #9fb6d0;
+}
+
+/* Chart white card */
+.ps-chart-card {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.ps-chart-card h3 {
+  margin-bottom: 15px;
+  color: #001f3f;
+}

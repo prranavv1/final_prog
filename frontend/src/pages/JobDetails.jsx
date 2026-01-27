@@ -1,80 +1,115 @@
-import React from "react";
-import "../styles/JobDetailReport.css"; // keep same CSS file
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../styles/JobDetails.css";
+
+
 
 function JobDetails() {
+  const [startDate, setStartDate] = useState("");
+const [endDate, setEndDate] = useState("");
+const [status, setStatus] = useState("");
+  const [jobDetails, setJobDetails] = useState([]);
+
+useEffect(() => {
+  axios.get("http://localhost:8000/job-details")
+    .then(res => setJobDetails(res.data))
+    .catch(err => console.error(err));
+}, []);
+const filteredJobs = jobDetails.filter((j) => {
+  let match = true;
+
+  if (startDate) {
+    match = match && new Date(j.invoice_date) >= new Date(startDate);
+  }
+
+  if (endDate) {
+    match = match && new Date(j.invoice_date) <= new Date(endDate);
+  }
+
+  if (status) {
+    match = match && j.status === status;
+  }
+
+  return match;
+});
+
   return (
-    <div className="jdr-container">
-      <h2 className="jdr-title">Job Details</h2>
+  <div className="jdr-page">
 
-      {/* FILTERS */}
-      <div className="jdr-filters">
+    {/* Page Header */}
+    <div className="jdr-header">
+      <h1>JOB DETAIL REPORT</h1>
+      <p>Manage and track your engineering workflows.</p>
+    </div>
+
+    {/* White Card */}
+    <div className="jdr-card">
+
+      {/* Filter Box */}
+      <div className="jdr-filter-box">
         <div>
-          <label>Start Date</label>
-          <input type="date" />
+          <label>START DATE</label>
+          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         </div>
 
         <div>
-          <label>End Date</label>
-          <input type="date" />
+          <label>END DATE</label>
+          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
 
         <div>
-          <label>Invoice Payment Status</label>
-          <select>
-            <option>Select option</option>
-            <option>Payment Done</option>
-            <option>Awaiting Payment</option>
+          <label>INVOICE PAYMENT STATUS</label>
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value="">All Statuses</option>
+            <option value="Payment Done">Payment Done</option>
+            <option value="Awaiting Payment">Awaiting Payment</option>
           </select>
         </div>
+
+        
       </div>
 
-      {/* TABLE */}
-      <table className="jdr-table">
-        <thead>
-          <tr>
-            <th>Job#</th>
-            <th>Invoice#</th>
-            <th>Client</th>
-            <th>Site</th>
-            <th>Job Finish Date</th>
-            <th>Invoice Date</th>
-            <th>Invoice/Quote Amount</th>
-            <th>Due Date</th>
-            <th>Payment Date</th>
-            <th>Invoice Payment Status</th>
-          </tr>
-        </thead>
+      {/* Table */}
+      <div className="jdr-table-wrapper">
+        <table className="jdr-table">
+          <thead>
+            <tr>
+              <th>JOB#</th>
+              <th>INVOICE#</th>
+              <th>CLIENT</th>
+              <th>SITE</th>
+              <th>JOB FINISH DATE</th>
+              <th>INVOICE DATE</th>
+              <th>INVOICE / QUOTE AMOUNT</th>
+              <th>DUE DATE</th>
+              <th>PAYMENT DATE</th>
+              <th>INVOICE STATUS</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td>2025187</td>
-            <td>PROG/2024/086</td>
-            <td>GE</td>
-            <td>Jamnagar, India</td>
-            <td>22/12/2024</td>
-            <td>16/01/2025</td>
-            <td>12,35,000</td>
-            <td>16/03/2025</td>
-            <td>24/02/2025</td>
-            <td>Payment Done</td>
-          </tr>
+          <tbody>
+            {filteredJobs.map((j, index) => (
+              <tr key={index}>
+                <td className="job-link">{j.job_no}</td>
+                <td>{j.invoice_no}</td>
+                <td className="client">{j.client}</td>
+                <td>{j.site}</td>
+                <td>{j.job_finish_date}</td>
+                <td>{j.invoice_date}</td>
+                <td>${j.amount?.toLocaleString()}</td>
+                <td className="danger">{j.due_date}</td>
+                <td>{j.payment_date || "-"}</td>
+                <td>{j.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-          <tr>
-            <td>2025195</td>
-            <td>PROG/2024/124</td>
-            <td>ONGG</td>
-            <td>Assam</td>
-            <td>24/12/2024</td>
-            <td>19/01/2025</td>
-            <td>9,08,976</td>
-            <td>19/03/2025</td>
-            <td>-</td>
-            <td>Awaiting Payment</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-  );
+  </div>
+);
+
 }
 
 export default JobDetails;

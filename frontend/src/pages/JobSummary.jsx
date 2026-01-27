@@ -24,26 +24,39 @@ const data = [
 
 function JobSummary() {
   return (
-    <div className="js-container">
-      <h2 className="js-title">Job Summary Report</h2>
+    <div className="js-page">
 
-      {/* TOP FILTER + COUNTS */}
-      <div className="js-top">
-        <div>
-          <label>Start Year</label>
+      {/* Page Header */}
+      <div className="js-header">
+        <h2>JOB SUMMARY REPORT</h2>
+        <p>Manage and track your engineering workflows.</p>
+      </div>
+
+      {/* Stats + Filter */}
+      <div className="js-top-row">
+        <div className="js-stat-card">
+          <span>TOTAL JOBS</span>
+          <h3>147</h3>
+        </div>
+
+        <div className="js-stat-card">
+          <span>COMPLETED JOBS</span>
+          <h3 className="green">139</h3>
+        </div>
+
+        <div className="js-filter">
+          <label>START YEAR</label>
           <select>
-            <option>Select option</option>
             <option>2025</option>
             <option>2024</option>
           </select>
         </div>
-
-        <div className="js-count">Total Jobs : <b>147</b></div>
-        <div className="js-count">Completed Jobs : <b>139</b></div>
       </div>
 
-      {/* CHART */}
-      <div className="js-chart">
+      {/* White Card */}
+      <div className="js-card">
+        <h3>JOB PERFORMANCE (APR'25 - DEC'25)</h3>
+
         <ResponsiveContainer width="100%" height={350}>
           <BarChart data={data}>
             <XAxis dataKey="month" />
@@ -51,8 +64,8 @@ function JobSummary() {
             <Tooltip />
             <Legend />
             <Bar dataKey="started" fill="#1f5d7a" name="Jobs Started" />
-            <Bar dataKey="completed" fill="#7bdc8c" name="Jobs Completed" />
-            <Bar dataKey="progress" fill="#f4b183" name="In progress" />
+            <Bar dataKey="completed" fill="#19c37d" name="Jobs Completed" />
+            <Bar dataKey="progress" fill="#f59e0b" name="In-Progress" />
           </BarChart>
         </ResponsiveContainer>
       </div>

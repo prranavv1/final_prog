@@ -1,11 +1,15 @@
 from pydantic import BaseModel
 from datetime import date
 from typing import List, Optional
+from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy import String
+from typing import List
 
 # 🔹 AUTH SCHEMAS
 class UserCreate(BaseModel):
     username: str
     password: str
+    role: str
 
 
 class UserLogin(BaseModel):
@@ -15,31 +19,29 @@ class UserLogin(BaseModel):
 
 # 🔹 JOB CREATE SCHEMA (INPUT FROM FRONTEND)
 class JobCreate(BaseModel):
-    job_no: int
-
-    # ✅ CHANGE HERE (ID → STRING NAME)
     customer: str
 
-    product_service: str
+    product_service: str | None = None
+    job_site: str | None = None
+    job_state: str | None = None
+    job_country: str | None = None
 
-    job_site: str
-    job_state: str
-    job_country: str
+    transport_mode_id: int | None = None
+    vehicle_detail_id: int | None = None
+    driver_accompanied_id: int | None = None
+    power_plant_type_id: int | None = None
 
-    lead_engineer: str
-    supporting_engineers: List[str]
-    assets_carried: List[str]
-    planned_tests: List[str]
+    lead_engineer: str | None = None
+    supporting_engineers: list = []
+    assets_carried: list = []
+    planned_tests: list = []
 
-    transport_mode_id: int
-    vehicle_detail_id: Optional[int] = None
-    driver_accompanied_id: Optional[int] = None
-    power_plant_type_id: Optional[int] = None
+    job_activity: str | None = None
+    job_work_status_id: int = 1
+    job_report_status_id: int = 1
+    job_start_date: str
 
-    job_activity: str
-    job_work_status_id: int
-    job_report_status_id: int
-    job_start_date: date
+
 
 
 
@@ -67,3 +69,60 @@ class JobResponse(BaseModel):
 
     class Config:
         from_attributes = True
+class JobUpdate(BaseModel):
+    customer: str | None = None
+    product_service: str | None = None
+    job_site: str | None = None
+    job_state: str | None = None
+    job_country: str | None = None
+
+    transport_mode_id: int | None = None
+    vehicle_detail_id: int | None = None
+    driver_accompanied_id: int | None = None
+    power_plant_type_id: int | None = None
+
+    lead_engineer: str | None = None
+    supporting_engineers: list | None = None
+    assets_carried: list | None = None
+    planned_tests: list | None = None
+
+    job_work_status_id: int | None = None
+    job_report_status_id: int | None = None
+
+    report_prepared_by: str | None = None
+    report_reviewed_by: str | None = None
+
+    job_activity: str | None = None
+    job_start_date: str | None = None
+    job_end_date: str | None = None
+
+
+
+class ExpenseCreate(BaseModel):
+    job_no: int
+    expense_type_id: int
+    expense_payment_status_id: int
+    expense_amount: float
+    expense_date: date
+    expense_submitted_by_engineer_id: int
+class JobFinancialCreate(BaseModel):
+    job_id: int
+    invoice_number: str
+    invoice_date: date | None = None
+    invoice_net_amount: float | None = None
+    invoice_gst_amount: float | None = None
+    invoice_gross_amount: float | None = None
+    payment_due_date: date | None = None
+    payment_date: date | None = None
+    invoice_payment_status: str | None = None
+
+class JobFinancialCreate(BaseModel):
+    job_no: int
+    invoice_number: str
+    invoice_date: str
+    invoice_net_amount: float
+    invoice_gst_amount: float
+    invoice_gross_amount: float
+    payment_due_date: str
+    payment_date: str | None = None
+    invoice_payment_status: str

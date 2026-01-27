@@ -1,0 +1,107 @@
+/* Page background */
+.jdr-page {
+  background: #c6d9ed;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+
+/* White card */
+.jdr-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Filter bar */
+.jdr-filter-box {
+  background: #f8fbff;
+  border-radius: 12px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.jdr-filter-box label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3b4b66;
+}
+
+.jdr-filter-box input,
+.jdr-filter-box select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d6e0ef;
+}
+
+.generate-btn {
+  background: #155d7a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Table */
+.jdr-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jdr-table th {
+  background: #155d7a;
+  color: white;
+  padding: 12px;
+  font-size: 13px;
+}
+
+.jdr-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e6eef6;
+  font-size: 13px;
+}
+
+.jdr-table tbody tr:nth-child(even) {
+  background: #f3f8fd;
+}
+
+/* Highlights */
+.job-link {
+  color: #0b5cff;
+  font-weight: 600;
+}
+
+.client {
+  font-weight: 600;
+}
+
+.danger {
+  color: red;
+  font-weight: 600;
+}
+/* Page header bar (grey label background like screenshot) */
+.jdr-header {
+  background: #c7dbef;   /* light grey-blue */
+  padding: 25px 40px;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Title */
+.jdr-header h2 {
+  margin: 0;
+  color: #001f3f;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* Subtitle */
+.jdr-header p {
+  margin-top: 4px;
+  color: #445b73;
+  font-size: 14px;
+}

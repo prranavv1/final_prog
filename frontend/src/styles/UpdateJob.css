@@ -1,18 +1,75 @@
-.updatejob-container {
-  padding-top: 110px;   /* space for navbar */
-  padding-left: 40px;
-  padding-right: 40px;
+.updatejob-wrapper {
+  background: #c9def1;
+  min-height: 100vh;
+  padding: 30px 40px;
+  font-family: "Segoe UI", sans-serif;
 }
 
-.updatejob-title {
+.page-header h1 {
+  margin: 0;
+  color: #001f3f;
+}
+
+.page-header p {
+  color: #3b5a82;
   margin-bottom: 20px;
-  color: #1a2a6c;
+}
+
+.form-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 25px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5ecf6;
+  padding-bottom: 15px;
+}
+
+.form-header h2 {
+  margin: 0;
+  color: #001f3f;
+}
+
+.form-header p {
+  font-size: 13px;
+  color: #6b7c99;
+}
+
+.cancel-btn {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.save-btn {
+  background: #001f3f;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.search-bar input {
+  padding: 8px;
+  flex: 1;
 }
 
 .updatejob-form {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px 25px;
+  gap: 20px;
 }
 
 .field {
@@ -21,39 +78,44 @@
 }
 
 .field label {
-  font-size: 13px;
+  font-size: 12px;
   margin-bottom: 4px;
+  font-weight: bold;
 }
 
 .field input,
 .field select,
 .field textarea {
-  padding: 8px;
-  border: 1px solid #cfcfcf;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccd5e3;
 }
 
 .field.full {
   grid-column: span 4;
 }
-
-.updatejob-actions {
-  margin-top: 40px;
+.form-actions-top {
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  gap: 10px;
+  margin-top: 25px;
+
 }
 
-.cancel {
-  padding: 8px 20px;
-  border: 1px solid #1a2a6c;
+
+.cancel-btn {
   background: white;
-  color: #1a2a6c;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-.save {
-  padding: 8px 30px;
-  background: #0b5ed7;
+.save-btn {
+  background: #001f3f;
   color: white;
-  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }

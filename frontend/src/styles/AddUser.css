@@ -1,0 +1,110 @@
+/* Full page background */
+.au-page {
+  background: #c6d9ed;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+/* Grey header bar */
+.au-header {
+  background: #c7dbef;
+  padding: 25px 40px;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 30px;
+}
+
+.au-header h2 {
+  margin: 0;
+  font-size: 26px;
+  color: #001f3f;
+}
+
+.au-header p {
+  margin-top: 4px;
+  color: #445b73;
+  font-size: 14px;
+}
+
+/* White card */
+.au-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  padding: 25px;
+}
+
+/* Card header */
+.au-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e3ebf5;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.au-card-header h3 {
+  margin: 0;
+  color: #001f3f;
+}
+
+.au-card-header p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #6b7c99;
+}
+
+/* Buttons */
+.au-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.au-cancel {
+  background: white;
+  border: 1px solid #ccd6e4;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.au-save {
+  background: #001f3f;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Form box */
+.au-form-box {
+  background: #f9fbff;
+  border-radius: 12px;
+  padding: 25px;
+  width: 60%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* Fields */
+.au-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.au-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3b4b66;
+  margin-bottom: 6px;
+}
+
+.au-field input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d6e0ef;
+  font-size: 14px;
+}

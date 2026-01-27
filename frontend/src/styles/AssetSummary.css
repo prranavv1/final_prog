@@ -1,45 +1,85 @@
-.as-container {
-  padding-top: 110px;
-  padding-left: 40px;
-  padding-right: 40px;
+/* Full page background */
+.as-page {
+  background: #c6d9ed;
+  min-height: 100vh;
+  padding: 40px;
 }
 
-.as-title {
-  margin-bottom: 20px;
-  color: #1a2a6c;
+/* Grey header bar */
+.as-header {
+  background: #c7dbef;
+  padding: 25px 40px;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 30px;
 }
 
-.as-subtitle {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  color: #1a2a6c;
+.as-header h2 {
+  margin: 0;
+  font-size: 26px;
+  color: #001f3f;
 }
 
-/* TABLE */
+.as-header p {
+  margin-top: 4px;
+  color: #445b73;
+  font-size: 14px;
+}
+
+/* White cards */
+.as-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  margin-bottom: 35px;
+  width: 100%;
+}
+
+.as-card.small {
+  width: 55%;
+}
+
+/* Card titles */
+.as-card h4 {
+  margin-bottom: 12px;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  color: #0b2545;
+}
+
+/* Table */
 .as-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
 }
 
 .as-table th {
-  background-color: #155d7a;
+  background: #155d7a;
   color: white;
-  padding: 10px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 13px;
   text-align: left;
 }
 
 .as-table td {
   padding: 12px;
-  border: 1px solid #d0d0d0;
   font-size: 13px;
+  border-bottom: 1px solid #eef3f8;
 }
 
-.as-table tbody tr:nth-child(even) {
-  background-color: #f2f5f7;
+/* Job link */
+.job-link {
+  color: #0b5cff;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.as-table tbody tr:nth-child(odd) {
-  background-color: #e6eaee;
+/* Status pill */
+.status-pill {
+  background: #dbe9ff;
+  color: #0047ff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
 }
