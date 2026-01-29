@@ -48,6 +48,84 @@ REPORT_STATUS_MAP = {
     2: "Ongoing",
     3: "Completed"
 }
+from sqlalchemy import text
+
+@app.get("/job-summary")
+def get_job_summary(year: int, db: Session = Depends(get_db)):
+    result = db.execute(text("""
+        SELECT 
+          MONTH(job_start_date) as month,
+          COUNT(*) as started,
+          SUM(CASE WHEN job_work_status_id = 3 THEN 1 ELSE 0 END) as completed,
+          SUM(CASE WHEN job_work_status_id != 3 THEN 1 ELSE 0 END) as progress
+        FROM jobs
+        WHERE YEAR(job_start_date) = :year
+        GROUP BY MONTH(job_start_date)
+        ORDER BY MONTH(job_start_date)
+    """), {"year": year}).fetchall()
+
+    months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    data = []
+
+    total_jobs = 0
+    completed_jobs = 0
+
+    for r in result:
+        data.append({
+            "month": months[r[0]-1],
+            "started": r[1],
+            "completed": r[2],
+            "progress": r[3]
+        })
+        total_jobs += r[1]
+        completed_jobs += r[2]
+
+    return {
+        "total_jobs": total_jobs,
+        "completed_jobs": completed_jobs,
+        "monthly": data
+    }
+@app.get("/payment-summary")
+def get_payment_summary(year: int, db: Session = Depends(get_db)):
+    result = db.execute(text("""
+        SELECT 
+          MONTH(invoice_date) as month,
+          SUM(CASE WHEN invoice_payment_status = 'Paid' THEN invoice_gross_amount ELSE 0 END) as received,
+          SUM(CASE WHEN invoice_payment_status = 'Partially Paid' THEN invoice_gross_amount ELSE 0 END) as progress,
+          SUM(CASE WHEN invoice_payment_status = 'Not Paid' THEN invoice_gross_amount ELSE 0 END) as pending
+        FROM job_financials
+        WHERE YEAR(invoice_date) = :year
+        GROUP BY MONTH(invoice_date)
+        ORDER BY MONTH(invoice_date)
+    """), {"year": year}).fetchall()
+
+    months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+    monthly = []
+    total_received = 0
+    total_progress = 0
+    total_pending = 0
+
+    for r in result:
+        monthly.append({
+            "month": months[r[0]-1],
+            "received": r[1] or 0,
+            "progress": r[2] or 0,
+            "pending": r[3] or 0,
+        })
+        total_received += r[1] or 0
+        total_progress += r[2] or 0
+        total_pending += r[3] or 0
+
+    return {
+        "monthly": monthly,
+        "received": total_received,
+        "progress": total_progress,
+        "pending": total_pending,
+        "revenue": total_received + total_progress + total_pending
+    }
+
+
 # 🔹 UPDATE EXPENSE
 @app.put("/job-expenses/{expense_id}")
 def update_expense(expense_id: int, expense: ExpenseCreate, db: Session = Depends(get_db)):
@@ -103,15 +181,6 @@ def get_job_details(db: Session = Depends(get_db)):
 
     return data
 
-@app.put("/pending-invoices/{financial_id}/remarks")
-def update_pending_invoice_remarks(financial_id: int, remarks: str, db: Session = Depends(get_db)):
-    fin = db.query(JobFinancial).filter(JobFinancial.id == financial_id).first()
-    if not fin:
-        raise HTTPException(status_code=404, detail="Record not found")
-
-    fin.remarks = remarks
-    db.commit()
-    return {"message": "Remarks updated"}
 
 # 🔹 UPLOAD DOCUMENT FOR EXPENSE
 UPLOAD_DIR = "uploads"
@@ -463,11 +532,16 @@ def get_expenses(job_no: int, db: Session = Depends(get_db)):
 @app.get("/accounts-receivable")
 def get_accounts_receivable(db: Session = Depends(get_db)):
     results = (
-        db.query(JobFinancial, Job, Customer)
-        .join(Job, JobFinancial.job_id == Job.job_id)
-        .join(Customer, Job.customer_id == Customer.customer_id)
-        .all()
+    db.query(JobFinancial, Job, Customer)
+    .join(Job, JobFinancial.job_id == Job.job_id)
+    .join(Customer, Job.customer_id == Customer.customer_id)
+    .filter(
+        JobFinancial.invoice_number != None,           # Invoice must exist
+        JobFinancial.invoice_payment_status != "Paid"  # Payment not completed
     )
+    .all()
+)
+
 
     data = []
     total_amount = 0
@@ -497,35 +571,38 @@ def get_accounts_receivable(db: Session = Depends(get_db)):
 @app.get("/pending-invoices")
 def get_pending_invoices(db: Session = Depends(get_db)):
     results = (
-        db.query(JobFinancial, Job, Customer)
-        .join(Job, JobFinancial.job_id == Job.job_id)
+        db.query(Job, Customer)
         .join(Customer, Job.customer_id == Customer.customer_id)
-        .filter(JobFinancial.invoice_payment_status != "Paid")
+        .outerjoin(JobFinancial, Job.job_id == JobFinancial.job_id)
+        .filter(Job.job_work_status_id == 3)      # Job Completed
+        .filter(JobFinancial.id == None)          # No invoice created
         .all()
     )
 
     data = []
     total_amount = 0
 
-    for fin, job, customer in results:
-        total_amount += fin.invoice_gross_amount or 0
-
+    for job, customer in results:
         data.append({
-            "id": fin.id,
+            "id": job.job_id,                     # using job_id now
             "job_no": job.job_no,
             "client": customer.customer_name,
             "site": job.job_site,
-            "quote_amount": fin.invoice_gross_amount,
+            "quote_amount": 0,                    # no invoice yet
             "job_finish_date": job.job_end_date,
-            "report_finish_date": fin.invoice_date,
-            "invoicing_pending": (date.today() - fin.invoice_date).days if fin.invoice_date else 0,
-            "remarks": fin.remarks or ""
+            "report_finish_date": None,
+            "invoicing_pending": (
+                (date.today() - job.job_end_date).days 
+                if job.job_end_date else 0
+            ),
+            "remarks": ""
         })
 
     return {
         "total_amount": total_amount,
         "rows": data
     }
+
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     result = cloudinary.uploader.upload(file.file)

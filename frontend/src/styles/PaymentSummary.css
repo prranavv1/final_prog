@@ -48,6 +48,7 @@
   background: #c6d9ed;
   min-height: 100vh;
   padding: 40px;
+  padding-top: 120px;   /* 🔥 pushes content below navbar */
 }
 
 /* Header */

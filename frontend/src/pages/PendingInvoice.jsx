@@ -5,23 +5,8 @@ import "../styles/PendingInvoice.css";
 function PendingInvoice() {
   const [pendingInvoices, setPendingInvoices] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [editingId, setEditingId] = useState(null);
-const [remarkText, setRemarkText] = useState("");
 
-const saveRemarks = async (id) => {
-  try {
-    await axios.put(
-      `http://localhost:8000/pending-invoices/${id}/remarks`,
-      null,
-      { params: { remarks: remarkText } }
-    );
-    setEditingId(null);
-    fetchPendingInvoices();
-  } catch (err) {
-    console.error(err);
-    alert("Failed to save remarks");
-  }
-};
+
 
   const fetchPendingInvoices = async () => {
     try {
@@ -91,31 +76,11 @@ const saveRemarks = async (id) => {
             </span>
 
             <span className="remarks">
-              {editingId === p.id ? (
-                <>
-                  <input
-                    value={remarkText}
-                    onChange={(e) => setRemarkText(e.target.value)}
-                  />
-                  <button onClick={() => saveRemarks(p.id)}>Save</button>
-                </>
-              ) : (
-                <>
-                  {p.remarks || "Add remark"}
-                  <span
-                    className="edit-icon"
-                    onClick={() => {
-                      setEditingId(p.id);
-                      setRemarkText(p.remarks || "");
-                    }}
-                  >
-                    ✏️
-                  </span>
-                </>
-              )}
-            </span>
+  Invoice not yet generated
+</span>
 
-            <span>✏️</span>
+<span>—</span>
+
           </div>
         ))}
       </div>
