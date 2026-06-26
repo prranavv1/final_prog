@@ -1,0 +1,11 @@
+--- START JOB WORK STATUS ---
+ID: 1, Code: TO_BE_EXECUTED, Name: To Be Executed
+ID: 2, Code: IN_PROGRESS, Name: In Progress
+ID: 3, Code: JOB_COMPLETED, Name: Job Completed
+--- END JOB WORK STATUS ---
+
+--- START JOB REPORT STATUS ---
+ID: 1, Code: NOT_STARTED, Name: Not Started
+ID: 2, Code: IN_PROGRESS, Name: In Progress
+ID: 3, Code: COMPLETED, Name: Completed
+--- END JOB REPORT STATUS ---

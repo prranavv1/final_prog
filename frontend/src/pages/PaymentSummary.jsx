@@ -33,81 +33,185 @@ function PaymentSummary() {
     { name: "Pending", value: pending },
   ];
 
-  const COLORS = ["#19b87e", "#3b82f6", "#f59e0b"];
+  const COLORS = ["#10b981", "#667eea", "#f59e0b"];
 
   return (
     <div className="ps-page">
 
-      {/* Header */}
+      {/* Page Header */}
       <div className="ps-header">
-        <div>
-          <h2>PAYMENT SUMMARY REPORT</h2>
-        </div>
-
-        <div className="ps-year">
-          <label>YEAR</label>
-          <select value={year} onChange={(e) => setYear(e.target.value)}>
-            <option value="2026">2026</option>
-            <option value="2025">2025</option>
-            <option value="2024">2024</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Cards */}
-      <div className="ps-cards">
-        <div className="ps-card">
-          <span>PAYMENT RECEIVED</span>
-          <h3>₹ {received.toLocaleString()}</h3>
-        </div>
-
-        <div className="ps-card">
-          <span>PAYMENT IN PROGRESS</span>
-          <h3>₹ {progress.toLocaleString()}</h3>
-        </div>
-
-        <div className="ps-card danger">
-          <span>PAYMENT PENDING</span>
-          <h3>₹ {pending.toLocaleString()}</h3>
-        </div>
-
-        <div className="ps-card dark">
-          <span>REVENUE YTD</span>
-          <h3>₹ {revenue.toLocaleString()}</h3>
+        <h2>PAYMENT SUMMARY REPORT</h2>
+        <p>Track financial collections, payment status, and monitor revenue trends</p>
+        <div className="ps-header-controls">
+          <div className="filter-container">
+            <label>Year</label>
+            <select value={year} onChange={(e) => setYear(e.target.value)}>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      {/* Bar Chart */}
-      <div className="ps-chart-card">
-        <h3>FINANCIAL COLLECTIONS OVERVIEW</h3>
-        <ResponsiveContainer width="100%" height={360}>
-          <BarChart data={chartData}>
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="received" fill="#19b87e" />
-            <Bar dataKey="progress" fill="#3b82f6" />
-            <Bar dataKey="pending" fill="#f59e0b" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+          {/* Financial Overview Section */}
+          <div className="financial-overview-section">
+            <div className="section-header">
+              <span className="section-number">01</span>
+              <h3>Financial Overview</h3>
+            </div>
+            <div className="financial-cards-grid">
+              
+              <div className="financial-card success">
+                <div className="card-icon">✅</div>
+                <div class="card-content">
+                  <div className="card-label">Payment Received</div>
+                  <div className="card-value">₹ {received.toLocaleString()}</div>
+                  <div className="card-trend">Successfully collected</div>
+                </div>
+              </div>
 
-      {/* Pie Chart */}
-      <div className="ps-chart-card" style={{ marginTop: "30px" }}>
-        <h3>PAYMENT DISTRIBUTION</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie data={pieData} dataKey="value" cx="50%" cy="50%" outerRadius={100} label>
-              {pieData.map((entry, i) => (
-                <Cell key={i} fill={COLORS[i]} />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
+              <div className="financial-card warning">
+                <div className="card-icon">⏳</div>
+                <div class="card-content">
+                  <div className="card-label">Payment In Progress</div>
+                  <div className="card-value">₹ {progress.toLocaleString()}</div>
+                  <div className="card-trend">Processing payments</div>
+                </div>
+              </div>
+
+              <div className="financial-card danger">
+                <div className="card-icon">⚠️</div>
+                <div class="card-content">
+                  <div className="card-label">Payment Pending</div>
+                  <div className="card-value">₹ {pending.toLocaleString()}</div>
+                  <div className="card-trend">Requires attention</div>
+                </div>
+              </div>
+
+              <div className="financial-card primary">
+                <div className="card-icon">📊</div>
+                <div class="card-content">
+                  <div className="card-label">Total Revenue YTD</div>
+                  <div className="card-value">₹ {revenue.toLocaleString()}</div>
+                  <div className="card-trend">Year to date earnings</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Analytics Section */}
+          <div className="analytics-section">
+            <div className="section-header">
+              <span className="section-number">02</span>
+              <h3>Financial Analytics</h3>
+            </div>
+            
+            <div className="analytics-grid">
+              
+              {/* Bar Chart */}
+              <div className="chart-card">
+                <div className="chart-header">
+                  <h4>Monthly Financial Collections</h4>
+                  <p>Track monthly payment receipts, progress, and pending invoices</p>
+                </div>
+                <div className="chart-container">
+                  <ResponsiveContainer width="100%" height={360}>
+                    <BarChart data={chartData}>
+                      <XAxis 
+                        dataKey="month" 
+                        tick={{ fill: '#9ca8bc', fontSize: 12 }}
+                        axisLine={{ stroke: '#3d4f6b' }}
+                      />
+                      <YAxis 
+                        tick={{ fill: '#9ca8bc', fontSize: 12 }}
+                        axisLine={{ stroke: '#3d4f6b' }}
+                        tickFormatter={(value) => `₹${value.toLocaleString()}`}
+                      />
+                      <Tooltip 
+                        contentStyle={{ 
+                          background: '#2a3547', 
+                          border: '1px solid #667eea', 
+                          borderRadius: '8px',
+                          color: '#e8edf3'
+                        }}
+                        formatter={(value) => [`₹${value.toLocaleString()}`, '']}
+                      />
+                      <Legend 
+                        wrapperStyle={{ color: '#e8edf3' }}
+                      />
+                      <Bar 
+                        dataKey="received" 
+                        name="Payment Received" 
+                        fill="#10b981" 
+                        radius={[4, 4, 0, 0]}
+                      />
+                      <Bar 
+                        dataKey="progress" 
+                        name="Payment In Progress" 
+                        fill="#667eea" 
+                        radius={[4, 4, 0, 0]}
+                      />
+                      <Bar 
+                        dataKey="pending" 
+                        name="Yet to Invoice" 
+                        fill="#f59e0b" 
+                        radius={[4, 4, 0, 0]}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Pie Chart */}
+              <div className="chart-card">
+                <div className="chart-header">
+                  <h4>Payment Distribution</h4>
+                  <p>Current breakdown of payment status across all invoices</p>
+                </div>
+                <div className="chart-container">
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie 
+                        data={pieData} 
+                        dataKey="value" 
+                        cx="50%" 
+                        cy="50%" 
+                        outerRadius={100} 
+                        label={(entry) => `₹${entry.value.toLocaleString()}`}
+                        labelStyle={{ fill: '#e8edf3', fontSize: 12, fontWeight: 600 }}
+                      >
+                        {pieData.map((entry, i) => (
+                          <Cell key={i} fill={COLORS[i]} />
+                        ))}
+                      </Pie>
+                      <Tooltip 
+                        contentStyle={{ 
+                          background: '#2a3547', 
+                          border: '1px solid #667eea', 
+                          borderRadius: '8px',
+                          color: '#e8edf3'
+                        }}
+                        formatter={(value) => [`₹${value.toLocaleString()}`, '']}
+                      />
+                      <Legend 
+                        wrapperStyle={{ color: '#e8edf3' }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="ps-actions">
+            <button className="ps-btn-refresh" onClick={fetchPaymentSummary}>
+              🔄 Refresh Report
+            </button>
+          </div>
 
     </div>
   );

@@ -1,129 +1,509 @@
-/* Full Page */
-.js-page {
-  background: #c6d9ed;
+/* ========================================
+   JOB SUMMARY - ASSET SUMMARY STYLE
+   Clean Light-Blue Background | White Cards | Professional Engineering Dashboard
+======================================== */
+
+/* Full page background - matching Asset Summary */
+.js-page, .enterprise-dashboard {
+  background: #c6d9ed !important;
   min-height: 100vh;
   padding: 40px;
-  padding-top: 110px;
 }
 
-/* Header */
+.dashboard-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header bar - matching Asset Summary */
 .js-header {
   background: #c7dbef;
   padding: 25px 40px;
   border-radius: 0 0 20px 20px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .js-header h2 {
   margin: 0;
+  font-size: 26px;
   color: #001f3f;
+  font-weight: 700;
 }
 
 .js-header p {
-  margin-top: 4px;
+  margin: 4px 0 0 0;
   color: #445b73;
+  font-size: 14px;
 }
 
-/* Top Row */
-.js-top-row {
+/* Header controls */
+.js-header-controls {
   display: flex;
-  gap: 25px;
+  gap: 20px;
   align-items: center;
-  margin-bottom: 30px;
 }
 
-/* Stats Card */
-.js-stat-card {
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-container label {
+  font-size: 11px;
+  color: #445b73;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-container select {
+  height: 36px;
+  padding: 0 12px;
+  border: 2px solid #e1ecf4;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
   background: white;
-  border-radius: 12px;
-  padding: 16px 26px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  text-align: center;
-  min-width: 160px;
+  min-width: 120px;
 }
 
-.js-stat-card span {
-  font-size: 12px;
-  color: #7a8ca8;
-  font-weight: 600;
+/* Override premium card styling to match Asset Summary */
+.premium-card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
 }
 
-.js-stat-card h3 {
-  margin: 5px 0 0;
-  font-size: 26px;
+/* Hide premium gradient header */
+.card-gradient-header {
+  display: none !important;
 }
 
-.green {
-  color: #19c37d;
+/* White cards - matching Asset Summary */
+.js-card, .summary-metrics-section, .job-trends-section, .job-status-section {
+  background: white !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+  margin-bottom: 35px !important;
+  width: 100% !important;
+  border: none !important;
 }
 
-/* Filter */
-.js-filter {
-  margin-left: auto;
+/* Section headers to match Asset Summary */
+.section-header {
+  margin-bottom: 20px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-.js-filter label {
-  font-size: 12px;
-  color: #3b4b66;
-  display: block;
-  margin-bottom: 4px;
+.section-header h3,
+.js-card h4 {
+  margin: 0 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.8px !important;
+  color: #0b2545 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
 }
 
-.js-filter select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #d6e0ef;
-  font-weight: 600;
-  background: white;
+.section-number {
+  display: none !important;
 }
 
-/* White Card */
-.js-card {
-  background: white;
-  border-radius: 18px;
-  padding: 25px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+/* Metrics cards */
+.metrics-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 20px !important;
+  margin-bottom: 20px !important;
 }
 
-.js-card h3 {
-  margin-bottom: 15px;
-  color: #001f3f;
+.metric-card {
+  background: #f0f7fc !important;
+  border: 1px solid #d1e7f0 !important;
+  border-radius: 10px !important;
+  padding: 16px 20px !important;
+  text-align: center !important;
+  transition: all 0.2s ease !important;
 }
-.js-stat-card.wide {
-  width: 260px;
+
+.metric-card:hover {
+  background: #e6f3fa !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.metric-label {
+  display: block !important;
+  font-size: 11px !important;
+  color: #445b73 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 6px !important;
+}
+
+.metric-value {
+  display: block !important;
+  font-size: 24px !important;
+  color: #001f3f !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+
+.metric-trend {
+  display: block !important;
+  font-size: 12px !important;
+  margin-top: 4px !important;
+  font-weight: 600 !important;
+}
+
+.trend-positive {
+  color: #065f46 !important;
+}
+
+.trend-negative {
+  color: #dc2626 !important;
+}
+
+.trend-neutral {
+  color: #6b7280 !important;
+}
+
+/* Charts and visualizations */
+.chart-container {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  margin-top: 10px !important;
+  border: 1px solid #eef3f8 !important;
+}
+
+/* Job status breakdown */
+.status-breakdown {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 15px !important;
+  margin-top: 20px !important;
+}
+
+.status-item {
+  text-align: center !important;
+  padding: 15px !important;
+  background: #f8fbfd !important;
+  border-radius: 8px !important;
+  border: 1px solid #eef3f8 !important;
+  transition: all 0.2s ease !important;
+}
+
+.status-item:hover {
+  background: #f0f7fc !important;
+  transform: translateY(-2px) !important;
+}
+
+.status-count {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: #001f3f !important;
+  margin-bottom: 4px !important;
+}
+
+.status-label {
+  font-size: 12px !important;
+  color: #6b7280 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Progress indicators */
+.progress-indicator {
+  margin-top: 15px !important;
+}
+
+.progress-label {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-bottom: 8px !important;
+  font-size: 13px !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
 }
 
 .progress-bar {
-  width: 100%;
-  height: 10px;
-  background: #e5e7eb;
-  border-radius: 20px;
-  margin-top: 8px;
-  overflow: hidden;
+  width: 100% !important;
+  height: 12px !important;
+  background: #e5e7eb !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
 }
 
 .progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #19c37d, #16a34a);
-  border-radius: 20px;
-  transition: width 0.6s ease;
-}
-.js-stat-card.wide {
-  width: 260px;
+  height: 100% !important;
+  background: linear-gradient(90deg, #155d7a, #0e4a63) !important;
+  transition: width 0.5s ease !important;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  background: #e5e7eb;
-  border-radius: 20px;
-  margin-top: 8px;
-  overflow: hidden;
+/* Tables - matching Asset Summary */
+.job-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin-top: 10px !important;
 }
 
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #19c37d, #16a34a);
-  border-radius: 20px;
-  transition: width 0.6s ease;
+.job-table th {
+  background: #155d7a !important;
+  color: white !important;
+  padding: 12px !important;
+  font-size: 13px !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.job-table td {
+  padding: 12px !important;
+  font-size: 13px !important;
+  border-bottom: 1px solid #eef3f8 !important;
+  color: #374151 !important;
+  vertical-align: middle !important;
+}
+
+.job-table tbody tr:hover {
+  background: #f8fbfd !important;
+}
+
+/* Job status pills */
+.status-completed {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  padding: 4px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+.status-in-progress {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  padding: 4px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+.status-pending {
+  background: #dbeafe !important;
+  color: #1e40af !important;
+  padding: 4px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+.status-cancelled {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  padding: 4px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+/* Summary stats */
+.summary-stats {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 15px !important;
+  margin-top: 20px !important;
+  padding-top: 15px !important;
+  border-top: 1px solid #eef3f8 !important;
+}
+
+.stat-item {
+  text-align: center !important;
+}
+
+.stat-label {
+  font-size: 11px !important;
+  color: #6b7280 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 4px !important;
+}
+
+.stat-value {
+  font-size: 18px !important;
+  color: #001f3f !important;
+  font-weight: 700 !important;
+}
+
+/* Action buttons */
+.js-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 15px !important;
+  margin-top: 30px !important;
+  padding-top: 20px !important;
+}
+
+.js-btn-refresh {
+  background: #155d7a !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 12px 24px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.js-btn-refresh:hover {
+  background: #0e4a63 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Export and action buttons */
+.report-actions {
+  display: flex !important;
+  gap: 10px !important;
+  justify-content: flex-end !important;
+  margin-top: 20px !important;
+}
+
+.action-btn {
+  background: #155d7a !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.action-btn:hover {
+  background: #0e4a63 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 1200px) {
+  .js-page, .enterprise-dashboard {
+    padding: 30px 20px !important;
+  }
+  
+  .js-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: 15px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .js-page, .enterprise-dashboard {
+    padding: 20px 15px !important;
+  }
+  
+  .js-header {
+    padding: 20px 25px !important;
+  }
+  
+  .js-header h2 {
+    font-size: 22px !important;
+  }
+  
+  .summary-metrics-section, .job-trends-section, .job-status-section {
+    padding: 15px !important;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .status-breakdown {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .summary-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .report-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  /* Table horizontal scroll for mobile */
+  .job-table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .js-header {
+    padding: 15px 20px !important;
+  }
+  
+  .js-header h2 {
+    font-size: 20px !important;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .status-breakdown {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .summary-stats {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .metric-value {
+    font-size: 20px !important;
+  }
+  
+  .status-count {
+    font-size: 24px !important;
+  }
 }

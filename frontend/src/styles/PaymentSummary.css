@@ -1,142 +1,429 @@
-.ps-container {
-  padding-top: 110px;
-  padding-left: 40px;
-  padding-right: 40px;
-}
+/* ========================================
+   PAYMENT SUMMARY - ASSET SUMMARY STYLE
+   Clean Light-Blue Background | White Cards | Professional Engineering Dashboard
+======================================== */
 
-.ps-title {
-  margin-bottom: 20px;
-  color: #1a2a6c;
-}
-
-/* TOP SECTION */
-.ps-top {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-
-.ps-top label {
-  font-size: 13px;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.ps-top select {
-  padding: 8px;
-  border: 1px solid #cfcfcf;
-  border-radius: 4px;
-}
-
-.ps-metric {
-  font-size: 15px;
-  color: #333;
-}
-
-.ps-metric.highlight {
-  color: #1f6fd1;
-  font-weight: 600;
-}
-
-/* CHART */
-.ps-chart {
-  margin-top: 20px;
-}
-.ps-page {
-  background: #c6d9ed;
+/* Full page background - matching Asset Summary */
+.ps-page, .enterprise-dashboard {
+  background: #c6d9ed !important;
   min-height: 100vh;
   padding: 40px;
-  padding-top: 120px;   /* 🔥 pushes content below navbar */
 }
 
-/* Header */
+.dashboard-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header bar - matching Asset Summary */
 .ps-header {
   background: #c7dbef;
   padding: 25px 40px;
   border-radius: 0 0 20px 20px;
-  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .ps-header h2 {
   margin: 0;
+  font-size: 26px;
   color: #001f3f;
+  font-weight: 700;
 }
 
 .ps-header p {
+  margin: 4px 0 0 0;
   color: #445b73;
+  font-size: 14px;
 }
 
-/* Year selector */
-.ps-year {
-  position: absolute;
-  right: 40px;
-  top: 30px;
+/* Header controls */
+.ps-header-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
-.ps-year label {
-  font-size: 12px;
-  color: #3b4b66;
-  display: block;
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.ps-year select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #d6e0ef;
+.filter-container label {
+  font-size: 11px;
+  color: #445b73;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Cards row */
-.ps-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  margin: 30px 0;
-}
-
-/* Normal cards */
-.ps-card {
+.filter-container select {
+  height: 36px;
+  padding: 0 12px;
+  border: 2px solid #e1ecf4;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
   background: white;
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  min-width: 120px;
 }
 
-.ps-card span {
-  font-size: 12px;
-  color: #7a8ca8;
+/* Override premium card styling to match Asset Summary */
+.premium-card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
 }
 
-.ps-card h3 {
-  margin: 8px 0 0;
-  font-size: 24px;
+/* Hide premium gradient header */
+.card-gradient-header {
+  display: none !important;
 }
 
-/* Pending card (red) */
-.ps-card.danger h3 {
-  color: #ff2f2f;
+/* White cards - matching Asset Summary */
+.ps-card, .analytics-section, .payment-trends-section, .payment-status-section {
+  background: white !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+  margin-bottom: 35px !important;
+  width: 100% !important;
+  border: none !important;
 }
 
-/* Revenue card (dark) */
-.ps-card.dark {
-  background: #031b34;
-  color: white;
+/* Section headers to match Asset Summary */
+.section-header {
+  margin-bottom: 20px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-.ps-card.dark span {
-  color: #9fb6d0;
+.section-header h3,
+.ps-card h4 {
+  margin: 0 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.8px !important;
+  color: #0b2545 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
 }
 
-/* Chart white card */
-.ps-chart-card {
-  background: white;
-  border-radius: 18px;
-  padding: 25px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+.section-number {
+  display: none !important;
 }
 
-.ps-chart-card h3 {
-  margin-bottom: 15px;
-  color: #001f3f;
+/* Analytics cards */
+.analytics-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+.analytics-card {
+  background: #f0f7fc !important;
+  border: 1px solid #d1e7f0 !important;
+  border-radius: 10px !important;
+  padding: 16px 20px !important;
+  text-align: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.analytics-card:hover {
+  background: #e6f3fa !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.analytics-label {
+  display: block !important;
+  font-size: 11px !important;
+  color: #445b73 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 6px !important;
+}
+
+.analytics-value {
+  display: block !important;
+  font-size: 24px !important;
+  color: #001f3f !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+
+/* Charts and visualizations */
+.chart-container {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  margin-top: 10px !important;
+  border: 1px solid #eef3f8 !important;
+}
+
+/* Tables - matching Asset Summary */
+.payment-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin-top: 10px !important;
+}
+
+.payment-table th {
+  background: #155d7a !important;
+  color: white !important;
+  padding: 12px !important;
+  font-size: 13px !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.payment-table td {
+  padding: 12px !important;
+  font-size: 13px !important;
+  border-bottom: 1px solid #eef3f8 !important;
+  color: #374151 !important;
+  vertical-align: middle !important;
+}
+
+.payment-table tbody tr:hover {
+  background: #f8fbfd !important;
+}
+
+/* Payment status indicators */
+.status-paid {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  padding: 4px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+.status-pending {
+  background: #dbeafe !important;
+  color: #1e40af !important;
+  padding: 4px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+.status-overdue {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  padding: 4px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+/* Amount formatting */
+.amount-positive {
+  color: #065f46 !important;
+  font-weight: 600 !important;
+}
+
+.amount-negative {
+  color: #dc2626 !important;
+  font-weight: 600 !important;
+}
+
+/* Progress bars */
+.progress-bar {
+  width: 100% !important;
+  height: 8px !important;
+  background: #e5e7eb !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  margin-top: 8px !important;
+}
+
+.progress-fill {
+  height: 100% !important;
+  background: #155d7a !important;
+  transition: width 0.3s ease !important;
+}
+
+/* Summary totals */
+.summary-totals {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 15px !important;
+  margin-top: 20px !important;
+  padding-top: 15px !important;
+  border-top: 1px solid #eef3f8 !important;
+}
+
+.total-item {
+  text-align: center !important;
+}
+
+.total-label {
+  font-size: 11px !important;
+  color: #6b7280 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 4px !important;
+}
+
+.total-value {
+  font-size: 18px !important;
+  color: #001f3f !important;
+  font-weight: 700 !important;
+}
+
+/* Action buttons */
+.ps-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 15px !important;
+  margin-top: 30px !important;
+  padding-top: 20px !important;
+}
+
+.ps-btn-refresh {
+  background: #155d7a !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 12px 24px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.ps-btn-refresh:hover {
+  background: #0e4a63 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Export buttons */
+.export-actions {
+  display: flex !important;
+  gap: 10px !important;
+  justify-content: flex-end !important;
+  margin-top: 20px !important;
+}
+
+.export-btn {
+  background: #155d7a !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.export-btn:hover {
+  background: #0e4a63 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 1200px) {
+  .ps-page, .enterprise-dashboard {
+    padding: 30px 20px !important;
+  }
+  
+  .ps-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  
+  .analytics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: 15px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ps-page, .enterprise-dashboard {
+    padding: 20px 15px !important;
+  }
+  
+  .ps-header {
+    padding: 20px 25px !important;
+  }
+  
+  .ps-header h2 {
+    font-size: 22px !important;
+  }
+  
+  .analytics-section, .payment-trends-section, .payment-status-section {
+    padding: 15px !important;
+  }
+  
+  .analytics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .summary-totals {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .export-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  /* Table horizontal scroll for mobile */
+  .payment-table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ps-header {
+    padding: 15px 20px !important;
+  }
+  
+  .ps-header h2 {
+    font-size: 20px !important;
+  }
+  
+  .analytics-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .summary-totals {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .analytics-value {
+    font-size: 20px !important;
+  }
 }

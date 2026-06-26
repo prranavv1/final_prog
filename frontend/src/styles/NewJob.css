@@ -1,143 +1,404 @@
-.newjob-wrapper {
-  padding: 30px 40px;
-  background: #c9def1;
+/* ========================================
+   NEW JOB - OPTIMIZED SINGLE-SCREEN DESIGN
+   Compact Layout | Full Width | No Scrolling
+======================================== */
+
+/* Full page background - optimized for single screen */
+.nj-page {
+  background: #e8f4fd !important;
   min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
+  padding: 12px !important;
+  margin-top: 70px;
+  overflow: hidden;
 }
 
-.page-header h1 {
+/* Header - Compact professional title */
+.nj-header {
+  background: transparent;
+  color: #1e3a8a;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.nj-header h2 {
   margin: 0;
-  color: #001f3f;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e3a8a;
+  letter-spacing: 0.5px;
 }
 
-.page-header p {
-  color: #3b5a82;
-  margin-bottom: 20px;
-}
-
-.form-card {
-  background: white;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  padding: 25px;
-}
-
-.form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e5ecf6;
-  padding-bottom: 15px;
-}
-
-.form-header h2 {
-  margin: 0;
-  color: #001f3f;
-}
-
-.form-header p {
-  font-size: 13px;
-  color: #6b7c99;
-}
-
-.form-actions-top button {
-  padding: 8px 16px;
-  border-radius: 8px;
+/* Form Container - Maximum width utilization */
+.nj-form-container {
+  background: transparent;
   border: none;
-  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
 }
 
-.cancel-btn {
+/* Success Message - Compact */
+.nj-success-message {
+  background: #dbeafe;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  color: #1e40af;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Main Form Layout - Single white card */
+.nj-main-form {
   background: white;
-  border: 1px solid #ccc;
-}
-
-.save-btn {
-  background: #001f3f;
-  color: white;
-  margin-left: 10px;
-}
-
-.job-no-box {
-  background: #e6f7e6;
-  padding: 10px;
-  margin: 15px 0;
-  border: 1px solid green;
-  font-weight: bold;
-}
-
-.newjob-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.field {
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 180px);
   display: flex;
   flex-direction: column;
+}
+
+/* Form Content - Scrollable */
+.nj-form-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Compact Grid Layout */
+.nj-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Section Headers - Inline compact style */
+.nj-section-divider {
+  grid-column: 1 / -1;
+  border-top: 2px solid #e5e7eb;
+  margin: 8px 0;
   position: relative;
 }
 
-.field label {
-  font-size: 12px;
-  margin-bottom: 4px;
-  font-weight: bold;
-  color: #3b4b66;
+.nj-section-label {
+  background: white;
+  color: #374151;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 12px;
+  position: absolute;
+  top: -8px;
+  left: 16px;
 }
 
-.field input,
-.field select,
-.field textarea {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccd5e3;
+/* Form Field - Compact */
+.nj-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  min-height: 0;
 }
 
-.field.full {
+.nj-form-field.span-2 {
+  grid-column: span 2;
+}
+
+.nj-form-field.span-3 {
+  grid-column: span 3;
+}
+
+.nj-form-field.span-4 {
   grid-column: span 4;
 }
 
-.dropdown {
+.nj-form-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.required {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* Form Inputs - Compact but readable */
+.nj-form-field input,
+.nj-form-field select,
+.nj-form-field textarea {
+  height: 36px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #1f2937;
+  background: white;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nj-form-field textarea {
+  height: 60px;
+  resize: vertical;
+  line-height: 1.4;
+  padding: 6px 12px;
+}
+
+.nj-form-field input:focus,
+.nj-form-field select:focus,
+.nj-form-field textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.nj-form-field input::placeholder,
+.nj-form-field textarea::placeholder {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+/* Dropdown - Compact */
+.nj-dropdown {
   position: absolute;
   top: 100%;
+  left: 0;
+  right: 0;
   background: white;
-  border: 1px solid #ccc;
-  width: 100%;
-  max-height: 150px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 160px;
   overflow-y: auto;
-  z-index: 9999;
+  z-index: 1000;
+  margin-top: 2px;
 }
 
-.dropdown div {
-  padding: 8px;
+.nj-dropdown div {
+  padding: 8px 12px;
   cursor: pointer;
+  font-size: 13px;
+  color: #1f2937;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
 }
 
-.dropdown div:hover {
-  background: #eef4ff;
+.nj-dropdown div:hover {
+  background: #f8fafc;
 }
-/* Multi-select dropdown styling */
-.field select[multiple] {
-  height: 110px;
-  background: #f9fbff;
-  cursor: pointer;
+
+.nj-dropdown div:last-child {
+  border-bottom: none;
 }
-.selected-list {
+
+/* Selected Tags - Compact */
+.nj-selected-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 6px;
+  gap: 4px;
+  margin-top: 4px;
 }
 
-.selected-list span {
-  background: #001f3f;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
+.nj-tag {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.2s ease;
+  border: 1px solid #bfdbfe;
 }
-.field textarea {
-  height: 42px;          /* same height as input/select */
-  resize: none;         /* stop manual resizing */
+
+.nj-tag:hover {
+  background: #bfdbfe;
+}
+
+/* Action Buttons - Fixed at bottom */
+.nj-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 0 0 0;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 8px;
+  background: white;
+  flex-shrink: 0;
+}
+
+.nj-btn-cancel {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.nj-btn-cancel:hover {
+  background: #e5e7eb;
+}
+
+.nj-btn-save {
+  background: #3b82f6;
+  color: white;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.nj-btn-save:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - Optimized
+======================================== */
+
+/* Large Desktop - 4 columns */
+@media (min-width: 1400px) {
+  .nj-form-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+}
+
+/* Desktop - 4 columns */
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .nj-form-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet - 3 columns */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .nj-page {
+    padding: 8px;
+  }
+  
+  .nj-form-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .nj-main-form {
+    padding: 16px;
+  }
+  
+  .nj-form-field.span-2 {
+    grid-column: span 2;
+  }
+  
+  .nj-form-field.span-3 {
+    grid-column: span 3;
+  }
+  
+  .nj-form-field.span-4 {
+    grid-column: span 3;
+  }
+}
+
+/* Mobile - 2 columns */
+@media (max-width: 767px) {
+  .nj-page {
+    padding: 6px;
+    overflow-y: auto;
+  }
+  
+  .nj-form-container {
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  .nj-main-form {
+    height: auto;
+    padding: 12px;
+  }
+  
+  .nj-form-content {
+    overflow-y: visible;
+  }
+  
+  .nj-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .nj-header h2 {
+    font-size: 20px;
+  }
+  
+  .nj-form-field.span-2,
+  .nj-form-field.span-3,
+  .nj-form-field.span-4 {
+    grid-column: span 2;
+  }
+  
+  .nj-form-field input,
+  .nj-form-field select,
+  .nj-form-field textarea {
+    height: 40px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .nj-form-field textarea {
+    height: 70px;
+  }
+  
+  .nj-form-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  
+  .nj-btn-cancel,
+  .nj-btn-save {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Small Mobile - 1 column */
+@media (max-width: 480px) {
+  .nj-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nj-form-field.span-2,
+  .nj-form-field.span-3,
+  .nj-form-field.span-4 {
+    grid-column: span 1;
+  }
 }

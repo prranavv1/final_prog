@@ -1,105 +1,584 @@
-/* Full page background */
+/* ========================================
+   ACCOUNTS RECEIVABLE - MATCHING NEW JOB ENTRY DESIGN
+   Light Blue Background | Modern Professional Layout | Consistent Styling
+======================================== */
+
+/* Full page background - matching New Job exactly */
 .ar-page {
-  background: #c6d9ed;
+  background: #e8f4fd !important;
   min-height: 100vh;
-  padding: 40px;
+  padding: 12px !important;
+  margin-top: 70px;
+  overflow: hidden;
 }
 
-/* Top title */
-.ar-page-header h1 {
-  font-size: 28px;
-  color: #0b2545;
-}
-.ar-page-header p {
-  color: #4d6b8a;
-  margin-bottom: 25px;
-}
-
-/* White main card */
-.ar-card {
-  background: white;
-  border-radius: 18px;
-  padding: 25px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-/* Card header */
-.ar-card-header {
+/* Header - matching New Job exactly */
+.ar-header {
+  background: transparent;
+  color: #1e3a8a;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  text-align: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 12px;
 }
 
-.ar-card-header h2 {
+.ar-header h2 {
   margin: 0;
-  color: #001f3f;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e3a8a;
+  letter-spacing: 0.5px;
 }
 
-.ar-card-header p {
+.ar-header p {
+  margin: 4px 0 0 0;
+  color: #374151;
   font-size: 13px;
-  color: #6b7c99;
+  font-weight: 500;
 }
 
-/* Total Outstanding Box */
-.ar-total-box {
+/* Header Stats */
+.ar-header-stats {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.total-outstanding-card {
+  background: white;
+  border-radius: 8px;
+  padding: 12px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.total-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.total-amount {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 2px;
+}
+
+.total-trend {
+  font-size: 10px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Main Form Layout - matching New Job exactly */
+.ar-main-form {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 220px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Content - matching New Job exactly */
+.ar-form-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Section Styling - matching New Job exactly */
+.financial-summary-section,
+.accounts-table-section {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Headers - matching New Job style */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.section-number {
+  background: #dbeafe;
+  color: #1e40af;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Summary Cards Grid */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.summary-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.summary-card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.summary-card.total {
+  border-left: 4px solid #10b981;
+}
+
+.summary-card.overdue {
+  border-left: 4px solid #f59e0b;
+}
+
+.summary-card.critical {
+  border-left: 4px solid #ef4444;
+}
+
+.card-icon {
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.card-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.card-trend {
+  font-size: 10px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Table Styling - matching New Job theme */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-top: 8px;
+}
+
+.accounts-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 13px;
+  min-width: 1200px; /* Ensure horizontal scroll on small screens */
+}
+
+.accounts-table th {
+  background: #f8fafc;
+  color: #374151;
+  font-weight: 600;
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 2px solid #e5e7eb;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.accounts-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #1f2937;
+  vertical-align: top;
+}
+
+.accounts-table tr:hover {
+  background: #f8fafc;
+}
+
+/* Table Cell Styling */
+.job-number-link {
+  color: #3b82f6;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.job-number-link:hover {
+  color: #2563eb;
+}
+
+.invoice-number {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.client-cell {
+  max-width: 150px;
+}
+
+.client-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-location {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.amount-cell {
+  font-weight: 600;
+  color: #059669;
   text-align: right;
 }
-.ar-total-box span {
-  font-size: 12px;
-  color: #8aa0b6;
-}
-.ar-total-box h3 {
-  color: #13a663;
-  font-size: 26px;
-  margin: 0;
+
+/* Age Badges */
+.age-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
-/* Table Header */
-.ar-table-header {
-  background: #155d7a;
-  color: white;
-  padding: 12px;
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  font-weight: bold;
-  border-radius: 10px 10px 0 0;
+.age-normal {
+  background: #d1fae5;
+  color: #065f46;
 }
 
-/* Table Rows */
-.ar-row {
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  padding: 12px;
-  border-bottom: 1px solid #e6eef6;
-  background: white;
+.age-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.age-critical {
+  background: #fecaca;
+  color: #991b1b;
+}
+
+/* Remarks Cell */
+.remarks-cell {
+  min-width: 200px;
+  max-width: 250px;
+}
+
+.remark-display {
+  display: flex;
   align-items: center;
+  gap: 8px;
 }
 
-.job-link {
-  color: #0b5cff;
-  font-weight: 600;
-  cursor: pointer;
+.remark-text {
+  flex: 1;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
 }
 
-.client {
-  font-weight: 600;
-}
-
-.age {
-  color: orange;
-  font-weight: bold;
-}
-.age.danger {
-  color: #ff6b00;
-}
-
-.remarks {
+.no-remark {
+  color: #9ca3af;
   font-style: italic;
-  color: #7a8ca8;
 }
 
-.edit-icon {
-  margin-left: 6px;
+.edit-remark-btn {
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+}
+
+.edit-remark-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  opacity: 1;
+}
+
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.remark-input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.save-btn,
+.cancel-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.cancel-btn:hover {
+  background: rgba(156, 163, 175, 0.1);
+}
+
+/* No Data Message */
+.no-data {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.no-data-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+}
+
+.no-data-icon {
+  font-size: 32px;
+  opacity: 0.5;
+}
+
+.no-data-message p {
+  margin: 0;
+  font-weight: 600;
+  color: #374151;
+}
+
+.no-data-message small {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+/* Table Footer */
+.table-footer {
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-top: 1px solid #e5e7eb;
+  border-radius: 0 0 8px 8px;
+}
+
+.footer-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Action Buttons - matching New Job exactly */
+.ar-actions {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  padding: 16px 0 0 0 !important;
+  border-top: 1px solid #e5e7eb !important;
+  margin-top: 8px !important;
+  background: white !important;
+  flex-shrink: 0 !important;
+}
+
+.ar-btn-refresh {
+  background: #3b82f6 !important;
+  color: white !important;
+  border: 1px solid #3b82f6 !important;
+  border-radius: 6px !important;
+  padding: 8px 24px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  min-width: 120px !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  justify-content: center !important;
+}
+
+.ar-btn-refresh:hover {
+  background: #2563eb !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Override old styles */
+.dashboard-container,
+.enterprise-dashboard {
+  all: unset !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - matching New Job exactly
+======================================== */
+
+/* Tablet - adjust grid */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .ar-page {
+    padding: 8px !important;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .ar-main-form {
+    padding: 16px !important;
+  }
+}
+
+/* Mobile - stack layout */
+@media (max-width: 767px) {
+  .ar-page {
+    padding: 6px !important;
+    overflow-y: auto !important;
+  }
+  
+  .ar-header {
+    text-align: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .ar-header h2 {
+    font-size: 20px !important;
+  }
+  
+  .ar-main-form {
+    height: auto !important;
+    padding: 12px !important;
+  }
+  
+  .ar-form-content {
+    overflow-y: visible !important;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .summary-card {
+    padding: 12px;
+  }
+  
+  .card-value {
+    font-size: 18px;
+  }
+  
+  .accounts-table {
+    font-size: 11px;
+  }
+  
+  .accounts-table th,
+  .accounts-table td {
+    padding: 8px 4px;
+  }
+  
+  .ar-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  
+  .ar-btn-refresh {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* Small Mobile - further optimization */
+@media (max-width: 480px) {
+  .total-outstanding-card {
+    padding: 8px 16px;
+  }
+  
+  .total-amount {
+    font-size: 16px;
+  }
+  
+  .card-value {
+    font-size: 16px;
+  }
+  
+  .accounts-table {
+    min-width: 800px; /* Allow horizontal scroll */
+  }
 }

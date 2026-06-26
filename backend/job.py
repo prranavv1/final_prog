@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, JSON, BigInteger
+from sqlalchemy import Column, Integer, String, Date, JSON, BigInteger, Float
 from database import Base
 
 class Job(Base):
@@ -25,6 +25,9 @@ class Job(Base):
     assets_carried = Column(JSON)
     planned_tests = Column(JSON)
 
+    quote_amount = Column(Float, default=0)
+    remarks = Column(String(500))
+
     job_activity = Column(String(500))
 
     job_work_status_id = Column(Integer)
@@ -35,3 +38,4 @@ class Job(Base):
 
     job_start_date = Column(Date)
     job_end_date = Column(Date)
+    report_finish_date = Column(Date)

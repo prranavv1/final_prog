@@ -33,13 +33,13 @@ function Layout() {
         <Route path="/current-engagements" element={<CurrentEngagements />} />
 
         <Route path="/new-job" element={<NewJob />} />
-        <Route path="/update-job" element={<UpdateJob />} />
+        <Route path="/update-job/:jobNo?" element={<UpdateJob />} />
         <Route path="/job-details" element={<JobDetails />} />
 
         <Route path="/job-financials" element={<JobFinancials />} />
         <Route path="/job-expenses" element={<JobExpenses />} />
         <Route path="/accounts-receivable" element={<AccountsReceivable />} />
-        <Route path="/pending-invoice" element={<PendingInvoice />} />
+        <Route path="/pending-invoices" element={<PendingInvoice />} />
 
         <Route path="/job-summary" element={<JobSummary />} />
         <Route path="/payment-summary" element={<PaymentSummary />} />

@@ -101,21 +101,25 @@ def get_payment_summary(year: int, db: Session = Depends(get_db)):
 
     months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
-    monthly = []
+    # Initialize all months with 0
+    monthly_data = {m: {"received": 0, "progress": 0, "pending": 0} for m in months}
+
     total_received = 0
     total_progress = 0
     total_pending = 0
 
     for r in result:
-        monthly.append({
-            "month": months[r[0]-1],
-            "received": r[1] or 0,
-            "progress": r[2] or 0,
-            "pending": r[3] or 0,
-        })
+        month_name = months[r[0]-1]
+        monthly_data[month_name]["received"] = r[1] or 0
+        monthly_data[month_name]["progress"] = r[2] or 0
+        monthly_data[month_name]["pending"] = r[3] or 0
+        
         total_received += r[1] or 0
         total_progress += r[2] or 0
         total_pending += r[3] or 0
+
+    # Convert back to list
+    monthly = [{"month": m, **data} for m, data in monthly_data.items()]
 
     return {
         "monthly": monthly,
@@ -160,7 +164,7 @@ def get_job_details(db: Session = Depends(get_db)):
     results = (
         db.query(JobFinancial, Job, Customer)
         .join(Job, JobFinancial.job_id == Job.job_id)
-        .join(Customer, Job.customer_id == Customer.customer_id)
+        .outerjoin(Customer, Job.customer_id == Customer.customer_id)
         .all()
     )
 
@@ -250,13 +254,15 @@ def update_remarks(financial_id: int, remarks: str, db: Session = Depends(get_db
 
 
 # 🔹 GET JOBS
-@app.get("/jobs", response_model=list[JobResponse])
+@app.get("/jobs")
 def get_jobs(db: Session = Depends(get_db)):
+
     results = (
-        db.query(Job, Customer)
-        .join(Customer, Job.customer_id == Customer.customer_id)
-        .all()
-    )
+    db.query(Job, Customer)
+    .outerjoin(Customer, Job.customer_id == Customer.customer_id)
+    .all()
+)
+
 
     jobs = []
 
@@ -323,6 +329,11 @@ def get_job_by_job_no(job_no: int, db: Session = Depends(get_db)):
     "job_work_status": JOB_STATUS_MAP.get(job.job_work_status_id, ""),
     "job_report_status": REPORT_STATUS_MAP.get(job.job_report_status_id, ""),
 
+    "transport_mode_id": job.transport_mode_id,
+    "vehicle_detail_id": job.vehicle_detail_id,
+    "driver_accompanied_id": job.driver_accompanied_id,
+    "power_plant_type_id": job.power_plant_type_id,
+
     "lead_engineer": job.lead_engineer,
     "supporting_engineers": job.supporting_engineers or [],
     "assets_carried": job.assets_carried or [],
@@ -330,7 +341,8 @@ def get_job_by_job_no(job_no: int, db: Session = Depends(get_db)):
 
     "job_activity": job.job_activity,
     "job_start_date": job.job_start_date,
-    "job_end_date": job.job_end_date
+    "job_end_date": job.job_end_date,
+    "report_finish_date": job.report_finish_date
 }
 
 
@@ -390,7 +402,10 @@ def create_job(job: JobCreate, db: Session = Depends(get_db)):
         job_activity=job.job_activity,
         job_work_status_id=job.job_work_status_id,
         job_report_status_id=job.job_report_status_id,
-        job_start_date=job.job_start_date
+        job_start_date=job.job_start_date,
+        report_finish_date=job.report_finish_date,
+        quote_amount=job.quote_amount,
+        remarks=job.remarks
     )
 
     db.add(new_job)
@@ -415,9 +430,10 @@ def update_job(job_no: int, job: JobUpdate, db: Session = Depends(get_db)):
         customer = db.query(Customer).filter(
         Customer.customer_name == job.customer
     ).first()
-
     if not customer:
         raise HTTPException(status_code=400, detail="Invalid customer name")
+    existing_job.customer_id = customer.customer_id
+
 
     existing_job.customer_id = customer.customer_id
 
@@ -442,6 +458,9 @@ def update_job(job_no: int, job: JobUpdate, db: Session = Depends(get_db)):
     existing_job.job_report_status_id = job.job_report_status_id
     existing_job.job_start_date = job.job_start_date
     existing_job.job_end_date = job.job_end_date
+    existing_job.report_finish_date = job.report_finish_date
+    existing_job.quote_amount = job.quote_amount
+    existing_job.remarks = job.remarks
 
     db.commit()
 
@@ -470,18 +489,36 @@ def save_job_financials(data: JobFinancialCreate, db: Session = Depends(get_db))
         raise HTTPException(status_code=404, detail="Job not found")
 
     existing = db.query(JobFinancial).filter(JobFinancial.job_id == job.job_id).first()
+    
+    # Sanitize dates
+    pay_date = data.payment_date if data.payment_date else None
+    inv_date = data.invoice_date if data.invoice_date else None
+    due_date = data.payment_due_date if data.payment_due_date else None
+
     if existing:
-        raise HTTPException(status_code=400, detail="Financials already exist for this job")
+        # Update existing
+        existing.invoice_number = data.invoice_number
+        existing.invoice_date = inv_date
+        existing.invoice_net_amount = data.invoice_net_amount
+        existing.invoice_gst_amount = data.invoice_gst_amount
+        existing.invoice_gross_amount = data.invoice_gross_amount
+        existing.payment_due_date = due_date
+        existing.payment_date = pay_date
+        existing.invoice_payment_status = data.invoice_payment_status
+        
+        db.commit()
+        db.refresh(existing)
+        return existing
 
     new_fin = JobFinancial(
         job_id=job.job_id,
         invoice_number=data.invoice_number,
-        invoice_date=data.invoice_date,
+        invoice_date=inv_date,
         invoice_net_amount=data.invoice_net_amount,
         invoice_gst_amount=data.invoice_gst_amount,
         invoice_gross_amount=data.invoice_gross_amount,
-        payment_due_date=data.payment_due_date,
-        payment_date=data.payment_date,
+        payment_due_date=due_date,
+        payment_date=pay_date,
         invoice_payment_status=data.invoice_payment_status,
     )
 
@@ -570,38 +607,63 @@ def get_accounts_receivable(db: Session = Depends(get_db)):
     }
 @app.get("/pending-invoices")
 def get_pending_invoices(db: Session = Depends(get_db)):
+    # Query for invoices with "Not Paid" or "Partially Paid" status
     results = (
-        db.query(Job, Customer)
+        db.query(JobFinancial, Job, Customer)
+        .join(Job, JobFinancial.job_id == Job.job_id)
         .join(Customer, Job.customer_id == Customer.customer_id)
-        .outerjoin(JobFinancial, Job.job_id == JobFinancial.job_id)
-        .filter(Job.job_work_status_id == 3)      # Job Completed
-        .filter(JobFinancial.id == None)          # No invoice created
+        .filter(
+            JobFinancial.invoice_payment_status.in_(["Not Paid", "Partially Paid"])
+        )
         .all()
     )
 
     data = []
-    total_amount = 0
+    total_pending_amount = 0
 
-    for job, customer in results:
+    for fin, job, customer in results:
+        # Calculate pending amount based on payment status
+        pending_amount = fin.invoice_gross_amount or 0
+        if fin.invoice_payment_status == "Partially Paid":
+            # For partially paid, show full amount (could be enhanced to show actual pending)
+            pending_amount = fin.invoice_gross_amount or 0
+        
+        total_pending_amount += pending_amount
+
+        # Calculate days since job finish or invoice date
+        days_pending = 0
+        if job.job_end_date:
+            days_pending = (date.today() - job.job_end_date).days
+        elif fin.invoice_date:
+            days_pending = (date.today() - fin.invoice_date).days
+
         data.append({
-            "id": job.job_id,                     # using job_id now
+            "id": fin.id,
             "job_no": job.job_no,
             "client": customer.customer_name,
-            "site": job.job_site,
-            "quote_amount": 0,                    # no invoice yet
+            "site": job.job_site or "-",
+            "quote_amount": job.quote_amount or 0,
             "job_finish_date": job.job_end_date,
-            "report_finish_date": None,
-            "invoicing_pending": (
-                (date.today() - job.job_end_date).days 
-                if job.job_end_date else 0
-            ),
-            "remarks": ""
+            "report_finish_status": REPORT_STATUS_MAP.get(job.job_report_status_id, "Not Started"),
+            "pending_amount": pending_amount,
+            "invoicing_pending": days_pending,
+            "remarks": fin.remarks or job.remarks or ""
         })
 
     return {
-        "total_amount": total_amount,
+        "total_amount": total_pending_amount,
         "rows": data
     }
+
+@app.put("/pending-invoices/{financial_id}/remarks")
+def update_pending_invoice_remarks(financial_id: int, remarks: str, db: Session = Depends(get_db)):
+    financial = db.query(JobFinancial).filter(JobFinancial.id == financial_id).first()
+    if not financial:
+        raise HTTPException(status_code=404, detail="Financial record not found")
+    
+    financial.remarks = remarks
+    db.commit()
+    return {"message": "Remarks updated successfully"}
 
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):

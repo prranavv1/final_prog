@@ -21,4 +21,3 @@ export const getCurrentEngagements = async () => {
   const response = await axios.get(`${BASE_URL}/jobs`);
   return response.data;
 };
-
